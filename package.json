@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-fb": "ng serve --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

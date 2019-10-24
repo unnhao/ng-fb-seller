@@ -1,1 +1,112 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans TC', sans-serif;
+  letter-spacing: 5px;
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+  background:url('assets/bg.jpg');
+  color:rgb(196, 196, 196);
+}
+body::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0,0,0,.5), rgba(0, 0, 0, 1));
+}
+.full {
+  width: 100%;
+  height: 100%;
+}
+.layout-absolute{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  overflow: scroll;
+  padding: 100px;
+}
+.layout-flex{
+  display: flex;
+}
+.layout-flex-center{
+  align-items: center;
+}
+.layout-flex-col{
+  flex-direction: column;
+}
+
+.layout-flex-row{
+  flex-direction: row;
+}
+
+.layout-flex-10{
+  flex: 10;
+}
+
+.layout-flex-2{
+  flex: 2;
+}
+.block{
+  position: relative;
+  border: 1px solid rgb(196, 196, 196);
+  padding: 20px 50px;
+  border-radius: 10px;
+  margin:20px;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.block .title{
+  border-bottom: 2px solid rgb(196, 196, 196);
+  padding: 10px;
+}
+.sub-block {
+  margin:20px 0;
+}
+.block-radius{
+  padding: 15px;
+}
+.sub-block-highlight{
+  background: rgb(196, 196, 196);
+  border-radius: 30px;
+  color: #000;
+}
+.live ,.block .live{
+  border-color: rgb(238, 77, 77);
+  color:rgb(238, 77, 77);
+}
+.live-highlight {
+  background: rgb(238, 77, 77);
+  color: rgb(224, 224, 224);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.replybtn{
+  border: 1px solid white;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
+
+.layout-text-align-left{
+  text-align: left;
+}

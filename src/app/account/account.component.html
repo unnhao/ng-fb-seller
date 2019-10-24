@@ -1,0 +1,46 @@
+<div class="layout-flex layout-flex-center full layout-absolute layout-flex-col">
+  <div class="block">
+    <div class="title">
+      <h2>粉絲團資料</h2>
+    </div>
+    <div class="sub-block name">
+      <span class="label">名稱 - </span><span>{{this.accountInfo.name}}</span>
+    </div>
+    <div class="sub-block id">
+      <span class="label">ID - </span><span>{{this.accountInfo.id}}</span>
+    </div>
+  </div>
+  <div class="block posts">
+    <div class="title">
+      <h2>粉絲團文章</h2>
+    </div>
+    <div *ngFor="let post of posts; index as i;" class="sub-block sub-block-highlight">
+      <div class="block-radius">
+        <span>{{post.message || post.story}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="block live">
+    <div class="title live">
+      <h2>直播列表</h2>
+    </div>
+    <ng-container *ngIf="lives.length>0; else elseTemplate">
+      <div *ngFor="let live of lives; index as i;" class="sub-block sub-block-highlight live-highlight btn"
+        (click)="onLiveClick(live)">
+        <div class="block-radius">
+          <span>正在直播：{{live.description}}</span>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="sub-block sub-block-highlight live-highlight btn">
+        <div class="block-radius">
+          <span>暫時沒有直播！</span>
+        </div>
+      </div>
+    </ng-template>
+
+
+  </div>
+</div>
