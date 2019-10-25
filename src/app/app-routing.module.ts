@@ -4,11 +4,12 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { LoginComponent } from './login/login.component';
 import { LiveComponent } from './live/live.component';
 import { AccountComponent } from './account/account.component';
+import { ErrorGuardService, LoginGuardService} from './error-guard.service';
 const routes: Routes = [
-  { path: 'liveinfo', component: LiveComponent },
-  { path: 'userinfo', component: UserInfoComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'accountinfo', component: AccountComponent },
+  { path: 'liveinfo', component: LiveComponent, canActivate: [ErrorGuardService]},
+  { path: 'userinfo', component: UserInfoComponent, canActivate: [ErrorGuardService]},
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuardService] },
+  { path: 'accountinfo', component: AccountComponent, canActivate: [ErrorGuardService]},
   {
     path: '',
     redirectTo: '/login',
@@ -18,7 +19,10 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(
     routes,
-    { enableTracing: false } // <-- debugging purposes only
+    {
+      useHash: true,
+      enableTracing: false,
+    } // <-- debugging purposes only
   )],
   exports: [RouterModule]
 })

@@ -12,9 +12,14 @@ export class LoginComponent implements OnInit {
 
   FB = (window as any).FB;
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.FB.getLoginStatus(
+      this.loginStatus.bind(this)
+    );
+  }
 
   loginStatus(response) {
+    console.log(response);
     if (response.status === 'connected') {
       this.fbinfoService.setAuthResponse((response as any).authResponse);
       this.onLoginSuccess();
@@ -26,19 +31,21 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    setTimeout(() => {
-      this.FB.init({
-        appId: '551275962300920',
-        cookie: true,
-        xfbml: true,
-        version: 'v4.0'
-      });
-      this.FB.login((response) => {
-        this.loginStatus(response);
-      }, (response) => {
-        console.log('error');
-        console.log(response);
-      });
-    }, 600);
+    if (this.FB) {
+      setTimeout(() => {
+        this.FB.init({
+          appId: '551275962300920',
+          cookie: true,
+          xfbml: true,
+          version: 'v4.0'
+        });
+        this.FB.login((response) => {
+          this.loginStatus(response);
+        }, (response) => {
+          console.log('error');
+          console.log(response);
+        });
+      }, 600);
+    }
   }
 }
