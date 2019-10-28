@@ -14,13 +14,13 @@ export class ErrorGuardService implements CanActivate, CanActivateChild {
     let access = true;
     if (!this.fbinfoService.getAuthResponse()) {
       access = false;
-      this.router.navigate(['login']);
+      setTimeout(() => {
+        this.router.navigate(['login']);
+      }, 500);
+      return false;
+    } else {
+      return true;
     }
-    if (!(window as any).FB) {
-      access = false;
-      this.router.navigate(['login']);
-    }
-    return true;
   }
 
   canActivateChild() {

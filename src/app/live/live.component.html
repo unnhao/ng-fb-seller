@@ -17,18 +17,24 @@
     <div class="title">
       <h2>直播畫面</h2>
     </div>
-    <div class="iframe">
-      <iframe [ngStyle]="{width: iframeWidth + 'px',height: iframeHeight+ 'px'}" [src]="iframeSrc" scrolling="no"
-        frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+    <div class="iframe" [ngStyle]="{'height': iframeHeight + 'px'}">
+      <iframe [ngStyle]="{'height': iframeHeight + 'px'}" [width]="iframeWidth" [height]="iframeHeight"
+        [src]="iframeSrc" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
     </div>
   </div>
 
   <div class="block">
     <div class="title">
-      <h2>回應訊息</h2>
+      <h2>私信訊息</h2>
     </div>
     <div class="reply">
       <input [(ngModel)]="replyMessage" type="text">
+    </div>
+    <div class="title">
+      <h2>回應信息</h2>
+    </div>
+    <div class="reply">
+      <input [(ngModel)]="replyPost" type="text">
     </div>
   </div>
 
@@ -36,13 +42,15 @@
     <div class="title live">
       <h2>即時訊息
       </h2>
-      <div class="refresh btn" (click)="refresh()">REFRESH</div>
+      <div class="refresh btn" (click)="refresh()">刷新</div>
     </div>
     <div *ngFor="let comment of comments; index as i;"
       class="layout-flex layout-flex-row sub-block sub-block-highlight live-highlight layout-text-align-left">
       <div class="block-radius layout-flex-10">
-        <span>{{comment.from.name}}:</span><span>{{comment.message}}</span>
+        <span>{{comment.from ? comment.from.name : '未知用戶'}}:</span><span>{{comment.message}}</span>
       </div>
-      <div class="layout-flex-2 replybtn btn" (click)="reply(comment.id)">REPLY</div>
+      <div class="layout-flex-1 replybtn btn" (click)="reply_message(comment.id)"><i class="fas fa-comments"></i>
+      </div>
+      <div class="layout-flex-1 replybtn btn" (click)="reply_Post(comment.id)"><i class="fas fa-reply"></i></div>
     </div>
   </div>

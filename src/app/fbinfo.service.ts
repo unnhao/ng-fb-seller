@@ -74,7 +74,7 @@ export class FbinfoService {
     return this.http.get(url);
   }
 
-  replyLiveComments(commentid, message, token) {
+  replyLiveComments(commentid, message) {
     const formData: FormData = new FormData();
     const url = `https://graph.facebook.com/v4.0/${commentid}/comments?access_token=${this.accountInfo.access_token}`;
     formData.append('message', message);
@@ -83,6 +83,16 @@ export class FbinfoService {
     formData.append('pretty', '0');
     formData.append('suppress_http_code', '1');
     formData.append('transport', 'cors');
+    return this.http.post(url, formData);
+  }
+
+  replyMessage(commentid, message) {
+    const formData: FormData = new FormData();
+    console.log('commentid:' + commentid);
+    console.log('message:' + message);
+    const url = `https://graph.facebook.com/v4.0/private_replies?access_token=${this.accountInfo.access_token}`;
+    formData.append('id', commentid);
+    formData.append('message', message);
     return this.http.post(url, formData);
   }
 

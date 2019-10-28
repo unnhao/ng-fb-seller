@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
       this.loginStatus.bind(this)
     );
   }
-
   loginStatus(response) {
     console.log(response);
     if (response.status === 'connected') {
@@ -32,13 +31,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.FB) {
+      this.FB.init({
+        appId: '551275962300920',
+        cookie: true,
+        xfbml: true,
+        version: 'v4.0'
+      });
       setTimeout(() => {
-        this.FB.init({
-          appId: '551275962300920',
-          cookie: true,
-          xfbml: true,
-          version: 'v4.0'
-        });
         this.FB.login((response) => {
           this.loginStatus(response);
         }, (response) => {

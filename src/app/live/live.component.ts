@@ -25,7 +25,8 @@ export class LiveComponent implements OnInit {
   iframeHeight = '';
   FB = (window as any).FB;
   comments: Comment[];
-  replyMessage = '範例訊息';
+  replyPost = '小助手已經把購買連結傳送給你了，快去訊息看看吧！';
+  replyMessage = 'https://www.etmall.com.tw/';
 
   ngOnInit() {
     this.liveInfo = this.fbinfoService.getLiveInfo();
@@ -47,8 +48,14 @@ export class LiveComponent implements OnInit {
     });
   }
 
-  reply(commentid) {
-    this.fbinfoService.replyLiveComments(commentid, this.replyMessage, '').subscribe((response: any) => {
+  reply_Post(commentid) {
+    this.fbinfoService.replyLiveComments(commentid, this.replyPost).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+
+  reply_message(commentid) {
+    this.fbinfoService.replyMessage(commentid, this.replyMessage).subscribe((response: any) => {
       console.log(response);
     });
   }
